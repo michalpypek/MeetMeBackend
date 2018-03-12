@@ -21,7 +21,5 @@ namespace MeetMe.Models
 		public List<int> EventsCreatedIds { get; set; }
 		public List<int> EventsAttendingIds { get; set; }
 		public List<int> EventsAttendedIds { get; set; }
-		public List<int> FriendsUserIds { get; set; }
-		public List<int> UsersBlockedIds { get; set; }
 	}
 }
