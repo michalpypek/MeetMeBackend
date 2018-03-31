@@ -29,5 +29,7 @@ namespace MeetMe.Models
         {
             return new ApplicationDbContext();
         }
-    }
+
+		public System.Data.Entity.DbSet<Event> Events { get; set; }
+	}
 }
