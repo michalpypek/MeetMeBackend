@@ -17,12 +17,14 @@ namespace MeetMe.Controllers
 		private ApplicationDbContext db = new ApplicationDbContext();
 
 		// GET: api/Events
+		[ResponseType(typeof(IEnumerable<Event>))]
 		public IEnumerable<Event> Get()
         {
 			return db.Events;
         }
 
         // GET: api/Events/5
+		[ResponseType(typeof(Event))]
         public IHttpActionResult Get(int id)
         {
 			Event evt = db.Events.Find(id);
@@ -68,7 +70,7 @@ namespace MeetMe.Controllers
 
 		// PUT: api/Events/5
 		[ResponseType(typeof(void))]
-		public IHttpActionResult PutToilet(int id, Event evt)
+		public IHttpActionResult PutEvent(int id, Event evt)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -118,6 +120,20 @@ namespace MeetMe.Controllers
 			return Ok(evt);
 		}
 
+		[HttpPut]
+		public IHttpActionResult AddUserToEvent(int eventId, List<int> userIds)
+		{
+			Event evt = db.Events.Find(eventId);
+			if (evt == null)
+			{
+				return NotFound();
+			}
+
+			evt.GuestsIds.AddRange(userIds);
+			db.SaveChanges();
+
+			return Ok(evt);
+		}
 
 
 		private bool EventExists(int id)

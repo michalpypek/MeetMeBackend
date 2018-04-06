@@ -88,3 +88,8 @@ D:\Projekty\ZPI\MeetMe\MeetMe\bin\System.Web.Http.Owin.xml
 D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.csprojResolveAssemblyReference.cache
 D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.dll
 D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.pdb
+D:\Projekty\ZPI\MeetMe\MeetMe\bin\Microsoft.Spatial.dll
+D:\Projekty\ZPI\MeetMe\MeetMe\bin\Microsoft.Spatial.xml
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.InitialCreate.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.csproj.GenerateResource.Cache
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.tatata.resources

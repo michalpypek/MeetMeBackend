@@ -7,5 +7,6 @@ namespace MeetMe.Models
 {
 	public class QrCode
 	{
+		public string code { get; set; }
 	}
 }
