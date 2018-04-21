@@ -9,11 +9,11 @@ namespace MeetMe.Models
 	public class Event
 	{
 		[Key]
-		public int id { get; set; }
+		public int? Id { get; set; }
 
-        public DateTime TimeCreated { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public long TimeCreated { get; set; }
+        public long StartTime { get; set; }
+        public long EndTime { get; set; }
 
         public QrCode QrCode { get; set; }
 
@@ -22,7 +22,12 @@ namespace MeetMe.Models
         public int GuestLimit { get; set; }
         public AgeRestriction AgeRestriction { get; set; }
         public EventType EventType { get; set; }
-        public Rating rating { get; set; }
-        public Location Location { get; set; }
-    }
+        public float Rating { get; set; }
+
+		public float Latitude { get; set; }
+		public float Longitude { get; set; }
+		public string LocationName { get; set; }
+		public string Description { get; set; }
+		public string GoogleMapsURL { get; set; }
+	}
 }

@@ -9,7 +9,7 @@ namespace MeetMe.Models
 	public class Location
 	{
 		[Key]
-		public int id { get; set; }
+		public int Id { get; set; }
 
 		public float Latitude { get; set; }
 		public float Longitude { get; set; }

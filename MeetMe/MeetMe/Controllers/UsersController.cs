@@ -14,19 +14,19 @@ namespace MeetMe.Controllers
 {
     public class UsersController : ApiController
     {
-        private UserDBContext db = new UserDBContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Users
         public IQueryable<User> GetUsers()
         {
-            return db.Users;
+            return db.ApplicationUsers;
         }
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
-            User user = db.Users.Find(id);
+            User user = db.ApplicationUsers.Find(id);
             if (user == null)
             {
                 return NotFound();
@@ -44,7 +44,7 @@ namespace MeetMe.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != user.id)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
@@ -70,44 +70,44 @@ namespace MeetMe.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Users
-        [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser(string name)
-        {
-            User user = new User()
-            {
-                id = GetUsers().Count() + 1,
-                UserName = name,
-                Rating = new Rating(),
-                EventsAttendedIds = new List<int>(),
-                EventsCreatedIds = new List<int>(),
-                EventsAttendingIds = new List<int>(),
+        //// POST: api/Users
+        //[ResponseType(typeof(User))]
+        //public IHttpActionResult PostUser(string name)
+        //{
+        //    User user = new User()
+        //    {
+        //        Id = GetUsers().Count() + 1,
+        //        UserName = name,
+        //        Rating = new Rating(),
+        //        EventsAttendedIds = new List<int>(),
+        //        EventsCreatedIds = new List<int>(),
+        //        EventsAttendingIds = new List<int>(),
 
 
-            };
+        //    };
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.Users.Add(user);
-            db.SaveChanges();
+        //    db.ApplicationUsers.Add(user);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = user.id }, user);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+        //}
 
         // DELETE: api/Users/5
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(int id)
         {
-            User user = db.Users.Find(id);
+            User user = db.ApplicationUsers.Find(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
+            db.ApplicationUsers.Remove(user);
             db.SaveChanges();
 
             return Ok(user);
@@ -124,7 +124,7 @@ namespace MeetMe.Controllers
 
         private bool UserExists(int id)
         {
-            return db.Users.Count(e => e.id == id) > 0;
+            return db.ApplicationUsers.Count(e => e.Id == id) > 0;
         }
     }
 }

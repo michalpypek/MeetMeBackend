@@ -8,10 +8,10 @@ namespace MeetMe.Models
 {
     public class Rating
     {
-        
-
-        private int NumberOfRates { get; set; }
-        private int Sum { get; set; }
+		[Key]
+        public int Id { get; set; }
+        public int NumberOfRates { get; set; }
+        public int Sum { get; set; }
 
         public  Rating()
         {
@@ -29,7 +29,7 @@ namespace MeetMe.Models
             return false;
         }
 
-        public double GetRating()
+        public float GetRating()
         {
             return Sum / NumberOfRates;  
         }

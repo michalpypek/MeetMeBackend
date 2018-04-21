@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -15,6 +16,13 @@ namespace MeetMe.Controllers
 		public IHttpActionResult Ping()
 		{
 			return Ok();
+		}
+
+		[HttpGet]
+		[Route("api/MyId")]
+		public string TestId()
+		{
+			return User.Identity.GetUserId();
 		}
     }
 }

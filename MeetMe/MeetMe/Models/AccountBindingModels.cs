@@ -38,16 +38,22 @@ namespace MeetMe.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+		public string Token { get; set; }
+		public string RefreshToken { get; set;}
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+		public long TokenExpirationDate { get; set; }
+
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+
+		[DataType(DataType.PhoneNumber)]
+		public string PhoneNumber { get; set; }
+
+		[StringLength(200)]
+		public string Description { get; set; }
+
+		[DataType(DataType.ImageUrl)]
+		public string PhotoURL { get; set; }
     }
 
     public class RegisterExternalBindingModel

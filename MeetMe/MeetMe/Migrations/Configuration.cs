@@ -10,7 +10,6 @@ namespace MeetMe.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "MeetMe.Models.ApplicationDbContext";
         }
 
         protected override void Seed(MeetMe.Models.ApplicationDbContext context)

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="zpimeetme" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Projekty\\ZPI\\MeetMe\\MeetMe\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\Projekty\\ZPI\\MeetMe\\MeetMe\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=den1.mssql3.gear.host;Initial Catalog=meetmezpi;User ID=meetmezpi;Password=Bz03S3NrOY-!" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\Projekty\\ZPI\\MeetMe\\MeetMe\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="MeetMe-Web.config Connection String" description="" value="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-MeetMe-20180311110342.mdf;Initial Catalog=aspnet-MeetMe-20180311110342;Integrated Security=True" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\Projekty\\ZPI\\MeetMe\\MeetMe\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MeetMe']/@connectionString" />
+  </parameter>
+</parameters>

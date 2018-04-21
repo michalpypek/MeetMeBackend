@@ -10,10 +10,14 @@ namespace MeetMe.Models
 	public class User
 	{
 		[Key]
-		public int id { get; set; }  
-        
-        [Required, StringLength(50)]
-        public string UserName { get; set; }
+		public int Id { get; set; }
+
+		public string token { get; set; }
+		public string refreshToken { get; set; }
+		public long tokenExpirationDate { get; set; }
+
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
 		       
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
@@ -27,13 +31,13 @@ namespace MeetMe.Models
         [DataType(DataType.ImageUrl)]
         public string PhotoURL { get; set; }
 
-        public Rating Rating { get; set; }
+
+		public int RatingID { get; set; }
+
+		public float UserRating { get; set;}
+
         public List<int> EventsCreatedIds { get; set; }
 		public List<int> EventsAttendingIds { get; set; }
 		public List<int> EventsAttendedIds { get; set; }
 	}
-    public class UserDBContext : DbContext
-    {
-        public DbSet<User> Users { get; set; }
-    }
 }

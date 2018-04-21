@@ -3,12 +3,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System.Data.Entity;
 
 namespace MeetMe.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+		public int UserId { get; set; }
+		public string token { get; set; }
+		public string refreshToken { get; set; }
+		public long tokenExpirationDate { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -30,6 +36,8 @@ namespace MeetMe.Models
             return new ApplicationDbContext();
         }
 
-		public System.Data.Entity.DbSet<Event> Events { get; set; }
+		public DbSet<Event> Events { get; set; }
+		public DbSet<User> ApplicationUsers { get; set; }
+		public DbSet<Rating> Ratings { get; set; }
 	}
 }
