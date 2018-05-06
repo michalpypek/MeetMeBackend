@@ -36,6 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\MeetMe.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,6 +45,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\MeetMe.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
@@ -238,7 +240,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
-    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\Controllers\HelpController.cs" />
     <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
     <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
     <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
@@ -280,6 +282,18 @@
     <Compile Include="Migrations\201804210919209_pleasework.Designer.cs">
       <DependentUpon>201804210919209_pleasework.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804280949103_yologracja.cs" />
+    <Compile Include="Migrations\201804280949103_yologracja.Designer.cs">
+      <DependentUpon>201804280949103_yologracja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804281158492_yologracja2.cs" />
+    <Compile Include="Migrations\201804281158492_yologracja2.Designer.cs">
+      <DependentUpon>201804281158492_yologracja2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804281256590_migracjasory.cs" />
+    <Compile Include="Migrations\201804281256590_migracjasory.Designer.cs">
+      <DependentUpon>201804281256590_migracjasory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -292,6 +306,8 @@
     <Compile Include="Models\QrCode.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserOnlyName.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -299,6 +315,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\XmlDocument.xml" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -408,9 +425,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
@@ -421,6 +436,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804210919209_pleasework.resx">
       <DependentUpon>201804210919209_pleasework.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804280949103_yologracja.resx">
+      <DependentUpon>201804280949103_yologracja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804281158492_yologracja2.resx">
+      <DependentUpon>201804281158492_yologracja2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804281256590_migracjasory.resx">
+      <DependentUpon>201804281256590_migracjasory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

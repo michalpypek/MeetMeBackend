@@ -17,12 +17,5 @@ namespace MeetMe.Controllers
 		{
 			return Ok();
 		}
-
-		[HttpGet]
-		[Route("api/MyId")]
-		public string TestId()
-		{
-			return User.Identity.GetUserId();
-		}
     }
 }

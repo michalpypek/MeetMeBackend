@@ -10,35 +10,8 @@ namespace MeetMe.Models
     {
 		[Key]
         public int Id { get; set; }
+
         public int NumberOfRates { get; set; }
-        public int Sum { get; set; }
-
-        public  Rating()
-        {
-            Sum = 0;
-            NumberOfRates = 0;
-        }
-        public bool AddRating(int r)
-        {
-            if (r > 0 && r <= 5)
-            {
-                NumberOfRates++;
-                Sum += r;
-                return true;
-            }
-            return false;
-        }
-
-        public float GetRating()
-        {
-            return Sum / NumberOfRates;  
-        }
-
-        public bool NumberOfRatesGT3()
-        {
-            if (NumberOfRates > 3) return true;
-            return false;
-        }
-
+        public float Sum { get; set; }
     }
 }

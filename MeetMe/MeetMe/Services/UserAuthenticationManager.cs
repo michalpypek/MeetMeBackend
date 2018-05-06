@@ -10,15 +10,23 @@ namespace MeetMe.Services
 	{
 		public bool IsTokenOk(string token, ApplicationDbContext db)
 		{
-			var usr = db.ApplicationUsers.First(x => x.token.Equals(token));
+			if (db.ApplicationUsers.Any(x => x.Token.Equals(token)))
+			{
+				var usr = db.ApplicationUsers.First(x => x.Token.Equals(token));
 
-			return usr != null;
+				return usr != null;
+			}
+			return false;
 		}
 
 		public User GetUserByToken (string token, ApplicationDbContext db)
 		{
-			var usr = db.ApplicationUsers.First(x => x.token.Equals(token));
-			return usr;
+			if (IsTokenOk(token, db))
+			{
+				var usr = db.ApplicationUsers.First(x => x.Token.Equals(token));
+				return usr;
+			}
+			return null;
 		}
 
 	}

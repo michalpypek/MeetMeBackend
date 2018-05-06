@@ -1,272 +1,257 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Http;
-using System.Web.Http.ModelBinding;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
-using MeetMe.Models;
-using MeetMe.Providers;
-using MeetMe.Results;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Net.Http;
+//using System.Security.Claims;
+//using System.Security.Cryptography;
+//using System.Threading.Tasks;
+//using System.Web;
+//using System.Web.Http;
+//using System.Web.Http.ModelBinding;
+//using Microsoft.AspNet.Identity;
+//using Microsoft.AspNet.Identity.EntityFramework;
+//using Microsoft.AspNet.Identity.Owin;
+//using Microsoft.Owin.Security;
+//using Microsoft.Owin.Security.Cookies;
+//using Microsoft.Owin.Security.OAuth;
+//using MeetMe.Models;
+//using MeetMe.Providers;
+//using MeetMe.Results;
 
-namespace MeetMe.Controllers
-{
-    [RoutePrefix("api/Account")]
-    public class AccountController : ApiController
-    {
-        private const string LocalLoginProvider = "Local";
-        private ApplicationUserManager _userManager;
-		private ApplicationDbContext db = new ApplicationDbContext();
+//namespace MeetMe.Controllers
+//{
+//    [RoutePrefix("api/Account")]
+//    public class AccountController : ApiController
+//    {
+//        private const string LocalLoginProvider = "Local";
+//        private ApplicationUserManager _userManager;
+//		private ApplicationDbContext db = new ApplicationDbContext();
 
-		public AccountController()
-        {
-        }
+//		public AccountController()
+//        {
+//        }
 
-        public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
-        {
-            UserManager = userManager;
-            AccessTokenFormat = accessTokenFormat;
-        }
+//        public AccountController(ApplicationUserManager userManager,
+//            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+//        {
+//            UserManager = userManager;
+//            AccessTokenFormat = accessTokenFormat;
+//        }
 
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
+//        public ApplicationUserManager UserManager
+//        {
+//            get
+//            {
+//                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+//            }
+//            private set
+//            {
+//                _userManager = value;
+//            }
+//        }
 
-        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
+//        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
-        // GET api/Account/UserInfo
-        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        [Route("UserInfo")]
-        public UserInfoViewModel GetUserInfo()
-        {
-            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
+//        // GET api/Account/UserInfo
+//        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+//        [Route("UserInfo")]
+//        public UserInfoViewModel GetUserInfo()
+//        {
+//            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
-            return new UserInfoViewModel
-            {
-                Email = User.Identity.GetUserName(),
-                HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
-            };
-        }
+//            return new UserInfoViewModel
+//            {
+//                Email = User.Identity.GetUserName(),
+//                HasRegistered = externalLogin == null,
+//                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
+//            };
+//        }
 
-        // POST api/Account/Logout
-        [Route("Logout")]
-        public IHttpActionResult Logout()
-        {
-            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
-            return Ok();
-        }
+//        // POST api/Account/Logout
+//        [Route("Logout")]
+//        public IHttpActionResult Logout()
+//        {
+//            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+//            return Ok();
+//        }
 
-        // POST api/Account/SetPassword
-        [Route("SetPassword")]
-        public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+//        // POST api/Account/SetPassword
+//        [Route("SetPassword")]
+//        public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
+//        {
+//            if (!ModelState.IsValid)
+//            {
+//                return BadRequest(ModelState);
+//            }
 
-            IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+//            IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
 
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result);
-            }
+//            if (!result.Succeeded)
+//            {
+//                return GetErrorResult(result);
+//            }
 
-            return Ok();
-        }
+//            return Ok();
+//        }
 
-        // POST api/Account/Register
-        [AllowAnonymous]
-        [Route("Register")]
-        public async Task<IHttpActionResult> Register(RegisterBindingModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+//        // POST api/Account/Register
+//        [AllowAnonymous]
+//        [Route("Register")]
+//        public async Task<IHttpActionResult> Register(RegisterBindingModel model)
+//        {
+//			if(!model.Email.Contains("@"))
+//			{
+//				model.Email = model.Token + "@null.com";
+//			}
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email,  };
+//            var user = new ApplicationUser() { UserName = model.RefreshToken+" " +model.LastName, Email = model.Email  };
 
-		//	public string token { get; set; }
-		//public string refreshToken { get; set; }
-		//public long tokenExpirationDate { get; set; }
-
-		//public string FirstName { get; set; }
-		//public string LastName { get; set; }
-
-		//[DataType(DataType.EmailAddress)]
-		//public string Email { get; set; }
-
-		//[DataType(DataType.PhoneNumber)]
-		//public string PhoneNumber { get; set; }
-
-		//[StringLength(200)]
-		//public string Description { get; set; }
-
-		//[DataType(DataType.ImageUrl)]
-		//public string PhotoURL { get; set; }
+//			ApplicationDbContext db = new ApplicationDbContext();
 
 
-		//public int RatingID { get; set; }
+//            IdentityResult result = await UserManager.CreateAsync(user, "Password!2");
 
-		//public float UserRating { get; set; }
+//            if (!result.Succeeded)
+//            {
+//                return GetErrorResult(result);
+//            }
 
-		ApplicationDbContext db = new ApplicationDbContext();
+//			var rating = db.Ratings.Add(new Rating());
+//			var use = new Models.User
+//			{
+//				token = model.Token,
+//				refreshToken = model.RefreshToken,
+//				tokenExpirationDate = model.TokenExpirationDate,
+//				FirstName = model.FirstName,
+//				LastName = model.LastName,
+//				Email = model.Email,
+//				PhoneNumber = model.PhoneNumber,
+//				Description = model.Description,
+//				PhotoURL = model.PhotoURL
+//			};
+//			db.ApplicationUsers.Add(use);
 
-			var rating = db.Ratings.Add(new Rating());
-			var use = new Models.User
-			{
+//			use.RatingID = rating.Id;
+//			db.SaveChanges();
 
-			};
-			db.ApplicationUsers.Add(use);
+//            return use.Id;
+//        }
 
-			use.RatingID = rating.Id;
-			db.SaveChanges();
+//        protected override void Dispose(bool disposing)
+//        {
+//            if (disposing && _userManager != null)
+//            {
+//                _userManager.Dispose();
+//                _userManager = null;
+//            }
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.RefreshToken);
+//            base.Dispose(disposing);
+//        }
 
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result);
-            }
+//        #region Helpers
 
-            return Ok();
-        }
+//        private IAuthenticationManager Authentication
+//        {
+//            get { return Request.GetOwinContext().Authentication; }
+//        }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && _userManager != null)
-            {
-                _userManager.Dispose();
-                _userManager = null;
-            }
+//        private IHttpActionResult GetErrorResult(IdentityResult result)
+//        {
+//            if (result == null)
+//            {
+//                return InternalServerError();
+//            }
 
-            base.Dispose(disposing);
-        }
+//            if (!result.Succeeded)
+//            {
+//                if (result.Errors != null)
+//                {
+//                    foreach (string error in result.Errors)
+//                    {
+//                        ModelState.AddModelError("", error);
+//                    }
+//                }
 
-        #region Helpers
+//                if (ModelState.IsValid)
+//                {
+//                    // No ModelState errors are available to send, so just return an empty BadRequest.
+//                    return BadRequest();
+//                }
 
-        private IAuthenticationManager Authentication
-        {
-            get { return Request.GetOwinContext().Authentication; }
-        }
+//                return BadRequest(ModelState);
+//            }
 
-        private IHttpActionResult GetErrorResult(IdentityResult result)
-        {
-            if (result == null)
-            {
-                return InternalServerError();
-            }
+//            return null;
+//        }
 
-            if (!result.Succeeded)
-            {
-                if (result.Errors != null)
-                {
-                    foreach (string error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error);
-                    }
-                }
+//        private class ExternalLoginData
+//        {
+//            public string LoginProvider { get; set; }
+//            public string ProviderKey { get; set; }
+//            public string UserName { get; set; }
 
-                if (ModelState.IsValid)
-                {
-                    // No ModelState errors are available to send, so just return an empty BadRequest.
-                    return BadRequest();
-                }
+//            public IList<Claim> GetClaims()
+//            {
+//                IList<Claim> claims = new List<Claim>();
+//                claims.Add(new Claim(ClaimTypes.NameIdentifier, ProviderKey, null, LoginProvider));
 
-                return BadRequest(ModelState);
-            }
+//                if (UserName != null)
+//                {
+//                    claims.Add(new Claim(ClaimTypes.Name, UserName, null, LoginProvider));
+//                }
 
-            return null;
-        }
+//                return claims;
+//            }
 
-        private class ExternalLoginData
-        {
-            public string LoginProvider { get; set; }
-            public string ProviderKey { get; set; }
-            public string UserName { get; set; }
+//            public static ExternalLoginData FromIdentity(ClaimsIdentity identity)
+//            {
+//                if (identity == null)
+//                {
+//                    return null;
+//                }
 
-            public IList<Claim> GetClaims()
-            {
-                IList<Claim> claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, ProviderKey, null, LoginProvider));
+//                Claim providerKeyClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
 
-                if (UserName != null)
-                {
-                    claims.Add(new Claim(ClaimTypes.Name, UserName, null, LoginProvider));
-                }
+//                if (providerKeyClaim == null || String.IsNullOrEmpty(providerKeyClaim.Issuer)
+//                    || String.IsNullOrEmpty(providerKeyClaim.Value))
+//                {
+//                    return null;
+//                }
 
-                return claims;
-            }
+//                if (providerKeyClaim.Issuer == ClaimsIdentity.DefaultIssuer)
+//                {
+//                    return null;
+//                }
 
-            public static ExternalLoginData FromIdentity(ClaimsIdentity identity)
-            {
-                if (identity == null)
-                {
-                    return null;
-                }
+//                return new ExternalLoginData
+//                {
+//                    LoginProvider = providerKeyClaim.Issuer,
+//                    ProviderKey = providerKeyClaim.Value,
+//                    UserName = identity.FindFirstValue(ClaimTypes.Name)
+//                };
+//            }
+//        }
 
-                Claim providerKeyClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
+//        private static class RandomOAuthStateGenerator
+//        {
+//            private static RandomNumberGenerator _random = new RNGCryptoServiceProvider();
 
-                if (providerKeyClaim == null || String.IsNullOrEmpty(providerKeyClaim.Issuer)
-                    || String.IsNullOrEmpty(providerKeyClaim.Value))
-                {
-                    return null;
-                }
+//            public static string Generate(int strengthInBits)
+//            {
+//                const int bitsPerByte = 8;
 
-                if (providerKeyClaim.Issuer == ClaimsIdentity.DefaultIssuer)
-                {
-                    return null;
-                }
+//                if (strengthInBits % bitsPerByte != 0)
+//                {
+//                    throw new ArgumentException("strengthInBits must be evenly divisible by 8.", "strengthInBits");
+//                }
 
-                return new ExternalLoginData
-                {
-                    LoginProvider = providerKeyClaim.Issuer,
-                    ProviderKey = providerKeyClaim.Value,
-                    UserName = identity.FindFirstValue(ClaimTypes.Name)
-                };
-            }
-        }
+//                int strengthInBytes = strengthInBits / bitsPerByte;
 
-        private static class RandomOAuthStateGenerator
-        {
-            private static RandomNumberGenerator _random = new RNGCryptoServiceProvider();
+//                byte[] data = new byte[strengthInBytes];
+//                _random.GetBytes(data);
+//                return HttpServerUtility.UrlTokenEncode(data);
+//            }
+//        }
 
-            public static string Generate(int strengthInBits)
-            {
-                const int bitsPerByte = 8;
-
-                if (strengthInBits % bitsPerByte != 0)
-                {
-                    throw new ArgumentException("strengthInBits must be evenly divisible by 8.", "strengthInBits");
-                }
-
-                int strengthInBytes = strengthInBits / bitsPerByte;
-
-                byte[] data = new byte[strengthInBytes];
-                _random.GetBytes(data);
-                return HttpServerUtility.UrlTokenEncode(data);
-            }
-        }
-
-        #endregion
-    }
-}
+//        #endregion
+//    }
+//}

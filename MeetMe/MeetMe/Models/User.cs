@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MeetMe.Models
 {
@@ -12,9 +13,7 @@ namespace MeetMe.Models
 		[Key]
 		public int Id { get; set; }
 
-		public string token { get; set; }
-		public string refreshToken { get; set; }
-		public long tokenExpirationDate { get; set; }
+		public string Token { get; set; }
 
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
@@ -30,7 +29,6 @@ namespace MeetMe.Models
 
         [DataType(DataType.ImageUrl)]
         public string PhotoURL { get; set; }
-
 
 		public int RatingID { get; set; }
 

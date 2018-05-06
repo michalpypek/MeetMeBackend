@@ -132,3 +132,7 @@ D:\Projekty\ZPI\MeetMe\MeetMe\bin\System.Diagnostics.DiagnosticSource.dll
 D:\Projekty\ZPI\MeetMe\MeetMe\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 D:\Projekty\ZPI\MeetMe\MeetMe\bin\System.Diagnostics.DiagnosticSource.xml
 D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.pleasework.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.yologracja.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.yologracja2.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.migracjasory.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\bin\MeetMe.XML

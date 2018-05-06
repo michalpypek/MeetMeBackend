@@ -22,7 +22,6 @@ namespace MeetMe.Models
         public int GuestLimit { get; set; }
         public AgeRestriction AgeRestriction { get; set; }
         public EventType EventType { get; set; }
-        public float Rating { get; set; }
 
 		public float Latitude { get; set; }
 		public float Longitude { get; set; }
