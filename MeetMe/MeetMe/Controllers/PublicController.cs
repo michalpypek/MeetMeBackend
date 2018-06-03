@@ -17,5 +17,15 @@ namespace MeetMe.Controllers
 		{
 			return Ok();
 		}
-    }
+
+		[HttpGet]
+		[Route("api/Time")]
+		public IHttpActionResult Time()
+		{
+			long currentSeconds = (long) (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+			return Ok(currentSeconds);
+		}
+
+	}
 }

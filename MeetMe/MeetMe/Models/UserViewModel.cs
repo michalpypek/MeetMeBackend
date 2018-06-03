@@ -21,6 +21,7 @@ namespace MeetMe.Models
 		public string Description { get; set; }
 
 		public string PhotoURL { get; set; }
+		public string FacebookURL { get; set; }
 
 		public float Rating { get; set; }
 	}

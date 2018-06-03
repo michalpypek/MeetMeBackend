@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 
 namespace MeetMe.Services
@@ -27,6 +28,24 @@ namespace MeetMe.Services
 				return usr;
 			}
 			return null;
+		}
+
+		public User AuthorizeGetUser(HttpRequestMessage request, ApplicationDbContext db)
+		{
+			string token;
+			IEnumerable<string> shiz;
+			request.Headers.TryGetValues("Authorization", out shiz);
+			if (shiz == null)
+			{
+				return null;
+			}
+			token = shiz.FirstOrDefault();
+			if (IsTokenOk(token, db))
+			{
+				return null;
+			}
+
+			return GetUserByToken(token,db);
 		}
 
 	}

@@ -215,3 +215,17 @@ D:\Projekty\ZPI\MeetMe\MeetMe\App_Data\System.Web.Optimization.xml
 D:\Projekty\ZPI\MeetMe\MeetMe\App_Data\Microsoft.AspNet.Identity.Core.xml
 D:\Projekty\ZPI\MeetMe\MeetMe\App_Data\Microsoft.AspNet.Identity.Owin.xml
 D:\Projekty\ZPI\MeetMe\MeetMe\App_Data\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Projekty\ZPI\MeetMe\MeetMe\bin\MeetMe.XML
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.eventName.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.dsakjsdalnjk.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.rototo.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.rototo1.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.rototo2.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.rototo3.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.rototo4.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.rototoASDJASDJKBN.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.falafel.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.address.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.userid.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.rate.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Debug\MeetMe.Migrations.facebook.resources

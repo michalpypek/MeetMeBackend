@@ -72,6 +72,7 @@ namespace MeetMe.Controllers
 					PhoneNumber = item.PhoneNumber,
 					Description = item.Description,
 					PhotoURL = item.PhotoURL,
+					FacebookURL = item.FacebookURL
 				});
 			}
 
@@ -153,7 +154,8 @@ namespace MeetMe.Controllers
 				PhoneNumber = item.PhoneNumber,
 				Description = item.Description,
 				PhotoURL = item.PhotoURL,
-				Rating = rate
+				Rating = rate,
+				FacebookURL = item.FacebookURL
 			});
         }
 
@@ -254,15 +256,10 @@ namespace MeetMe.Controllers
 			dbUser.Email = user.Email;
 			dbUser.Description = user.Description;
 			dbUser.PhotoURL = user.PhotoURL;
+			dbUser.FacebookURL = user.FacebookURL;
 
-			try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-				return NotFound();
-            }
+            db.SaveChanges();
+
 
 			user.Id = dbUser.Id;
 			user.FirstName = dbUser.FirstName;
@@ -271,6 +268,7 @@ namespace MeetMe.Controllers
 			user.Email = dbUser.Email;
 			user.Description = dbUser.Description;
 			user.PhotoURL = dbUser.PhotoURL;
+			user.FacebookURL = dbUser.FacebookURL;
 			return Json(user);
         }
 
@@ -322,6 +320,10 @@ namespace MeetMe.Controllers
                 return NotFound();
             }
 
+			var guests = db.Guests.Where(x => x.User.Equals(user));
+
+			db.Guests.RemoveRange(guests);
+
             db.ApplicationUsers.Remove(user);
             db.SaveChanges();
 
@@ -345,7 +347,7 @@ namespace MeetMe.Controllers
 				var usr = db.ApplicationUsers.Find(id);
 				if ( usr != null )
 				{
-					list.Add(new UserOnlyName {Id = id, FirstName = usr.FirstName, LastName = usr.LastName });
+					list.Add(new UserOnlyName {Id = id, FirstName = usr.FirstName, LastName = usr.LastName, PhotoURL = usr.PhotoURL, FacebookURL = usr.FacebookURL });
 				}
 			}
 

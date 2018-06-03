@@ -13,5 +13,8 @@ namespace MeetMe.Models
 
         public int NumberOfRates { get; set; }
         public float Sum { get; set; }
-    }
+
+		public List<int> UsersThatRatedIds { get; set; }
+		public virtual ICollection<User> UsersThatRated { get; set; }
+	}
 }

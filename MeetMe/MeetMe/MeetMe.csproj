@@ -294,10 +294,63 @@
     <Compile Include="Migrations\201804281256590_migracjasory.Designer.cs">
       <DependentUpon>201804281256590_migracjasory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805061048556_eventName.cs" />
+    <Compile Include="Migrations\201805061048556_eventName.Designer.cs">
+      <DependentUpon>201805061048556_eventName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071522577_dsakjsdalnjk.cs" />
+    <Compile Include="Migrations\201805071522577_dsakjsdalnjk.Designer.cs">
+      <DependentUpon>201805071522577_dsakjsdalnjk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071555477_rototo.cs" />
+    <Compile Include="Migrations\201805071555477_rototo.Designer.cs">
+      <DependentUpon>201805071555477_rototo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071600025_rototo1.cs" />
+    <Compile Include="Migrations\201805071600025_rototo1.Designer.cs">
+      <DependentUpon>201805071600025_rototo1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071627330_rototo2.cs" />
+    <Compile Include="Migrations\201805071627330_rototo2.Designer.cs">
+      <DependentUpon>201805071627330_rototo2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071628017_rototo3.cs" />
+    <Compile Include="Migrations\201805071628017_rototo3.Designer.cs">
+      <DependentUpon>201805071628017_rototo3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071640045_rototo4.cs" />
+    <Compile Include="Migrations\201805071640045_rototo4.Designer.cs">
+      <DependentUpon>201805071640045_rototo4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071652503_rototoASDJASDJKBN.cs" />
+    <Compile Include="Migrations\201805071652503_rototoASDJASDJKBN.Designer.cs">
+      <DependentUpon>201805071652503_rototoASDJASDJKBN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805151549418_falafel.cs" />
+    <Compile Include="Migrations\201805151549418_falafel.Designer.cs">
+      <DependentUpon>201805151549418_falafel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805201010305_address.cs" />
+    <Compile Include="Migrations\201805201010305_address.Designer.cs">
+      <DependentUpon>201805201010305_address.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805211601028_userid.cs" />
+    <Compile Include="Migrations\201805211601028_userid.Designer.cs">
+      <DependentUpon>201805211601028_userid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805311202532_rate.cs" />
+    <Compile Include="Migrations\201805311202532_rate.Designer.cs">
+      <DependentUpon>201805311202532_rate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806011819571_facebook.cs" />
+    <Compile Include="Migrations\201806011819571_facebook.Designer.cs">
+      <DependentUpon>201806011819571_facebook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AgeRestriction.cs" />
+    <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventType.cs" />
     <Compile Include="Models\EventViewModel.cs" />
@@ -445,6 +498,45 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804281256590_migracjasory.resx">
       <DependentUpon>201804281256590_migracjasory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805061048556_eventName.resx">
+      <DependentUpon>201805061048556_eventName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071522577_dsakjsdalnjk.resx">
+      <DependentUpon>201805071522577_dsakjsdalnjk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071555477_rototo.resx">
+      <DependentUpon>201805071555477_rototo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071600025_rototo1.resx">
+      <DependentUpon>201805071600025_rototo1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071627330_rototo2.resx">
+      <DependentUpon>201805071627330_rototo2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071628017_rototo3.resx">
+      <DependentUpon>201805071628017_rototo3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071640045_rototo4.resx">
+      <DependentUpon>201805071640045_rototo4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071652503_rototoASDJASDJKBN.resx">
+      <DependentUpon>201805071652503_rototoASDJASDJKBN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805151549418_falafel.resx">
+      <DependentUpon>201805151549418_falafel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805201010305_address.resx">
+      <DependentUpon>201805201010305_address.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805211601028_userid.resx">
+      <DependentUpon>201805211601028_userid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805311202532_rate.resx">
+      <DependentUpon>201805311202532_rate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806011819571_facebook.resx">
+      <DependentUpon>201806011819571_facebook.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

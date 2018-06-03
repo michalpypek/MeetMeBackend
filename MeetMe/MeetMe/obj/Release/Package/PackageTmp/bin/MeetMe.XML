@@ -514,6 +514,28 @@
             <param name="eventId">Id of the event to join</param>
             <returns></returns>
         </member>
+        <member name="M:MeetMe.Controllers.EventsController.Leave(System.Int32)">
+            <summary>
+            Leave an event
+            </summary>
+            <param name="eventId">Id of the event to leave</param>
+            <returns></returns>
+        </member>
+        <member name="M:MeetMe.Controllers.EventsController.WasRated(System.Int32)">
+            <summary>
+            Returns whether the user has rated the event already
+            </summary>
+            <param name="eventId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MeetMe.Controllers.EventsController.Rate(System.Int32,System.Single)">
+            <summary>
+            Rate the creator of an event
+            </summary>
+            <param name="eventId"></param>
+            <param name="rating"></param>
+            <returns></returns>
+        </member>
         <member name="M:MeetMe.Controllers.EventsController.GetEvents(System.Double,System.Double,System.Double)">
             <summary>
             Get events within a specified range around given location
@@ -525,7 +547,13 @@
         </member>
         <member name="M:MeetMe.Controllers.EventsController.GetMyEvents">
             <summary>
-            Get a list of events current user takes part in (as a creator or guest)
+            Get a list of events current user takes part in (as a creator or guest, future, or not older than 24h)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MeetMe.Controllers.EventsController.GetAllMyEvents">
+            <summary>
+            Get a list of all events current user takes or took part in (as a creator or guest)
             </summary>
             <returns></returns>
         </member>
@@ -562,14 +590,6 @@
             Delete Event
             </summary>
             <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MeetMe.Controllers.EventsController.AddUserToEvent(System.Int32,System.Collections.Generic.List{System.Int32})">
-            <summary>
-            Add a list of users to event
-            </summary>
-            <param name="eventId"></param>
-            <param name="userIds"></param>
             <returns></returns>
         </member>
         <member name="M:MeetMe.Controllers.UsersController.Register(MeetMe.Models.RegisterBindingModel)">

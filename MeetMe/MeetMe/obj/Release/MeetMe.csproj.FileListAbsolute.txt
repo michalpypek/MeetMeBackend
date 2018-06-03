@@ -136,3 +136,16 @@ D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.yologracja.resources
 D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.yologracja2.resources
 D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.migracjasory.resources
 D:\Projekty\ZPI\MeetMe\MeetMe\bin\MeetMe.XML
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.eventName.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.dsakjsdalnjk.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.rototo.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.rototo1.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.rototo2.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.rototo3.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.rototo4.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.rototoASDJASDJKBN.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.falafel.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.address.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.userid.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.rate.resources
+D:\Projekty\ZPI\MeetMe\MeetMe\obj\Release\MeetMe.Migrations.facebook.resources

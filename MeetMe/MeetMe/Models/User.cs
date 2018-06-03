@@ -30,6 +30,8 @@ namespace MeetMe.Models
         [DataType(DataType.ImageUrl)]
         public string PhotoURL { get; set; }
 
+		public string FacebookURL { get; set; }
+
 		public int RatingID { get; set; }
 
 		public float UserRating { get; set;}

@@ -39,5 +39,6 @@ namespace MeetMe.Models
 		public DbSet<Event> Events { get; set; }
 		public DbSet<User> ApplicationUsers { get; set; }
 		public DbSet<Rating> Ratings { get; set; }
+		public DbSet<Guest> Guests { get; set; }
 	}
 }
