@@ -169,15 +169,9 @@ namespace MeetMe.Controllers
 		[Route("~/api/Users/{userId:int}/Rate")]
 		public IHttpActionResult RateUser(int userId, float grade)
 		{
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if (shiz == null)
-			{
-				return Unauthorized();
-			}
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
+			var usr = authenticator.AuthorizeGetUser(Request, db);
+
+			if (usr == null)
 			{
 				return Unauthorized();
 			}
@@ -229,46 +223,33 @@ namespace MeetMe.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUser(UserViewModel user)
         {
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if (shiz == null)
-			{
-				return Unauthorized();
-			}
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
+			var usr = authenticator.AuthorizeGetUser(Request, db);
+
+			if (usr == null)
 			{
 				return Unauthorized();
 			}
 
-            if (!db.ApplicationUsers.Any(x => x.Token == token))
-            {
-                return BadRequest();
-            }
 
-			var dbUser = db.ApplicationUsers.First(x => x.Token == token);
-
-
-			dbUser.FirstName = user.FirstName;
-			dbUser.LastName = user.LastName;
-			dbUser.PhoneNumber = user.PhoneNumber;
-			dbUser.Email = user.Email;
-			dbUser.Description = user.Description;
-			dbUser.PhotoURL = user.PhotoURL;
-			dbUser.FacebookURL = user.FacebookURL;
+			usr.FirstName = user.FirstName;
+			usr.LastName = user.LastName;
+			usr.PhoneNumber = user.PhoneNumber;
+			usr.Email = user.Email;
+			usr.Description = user.Description;
+			usr.PhotoURL = user.PhotoURL;
+			usr.FacebookURL = user.FacebookURL;
 
             db.SaveChanges();
 
 
-			user.Id = dbUser.Id;
-			user.FirstName = dbUser.FirstName;
-			user.LastName = dbUser.LastName;
-			user.PhoneNumber = dbUser.PhoneNumber;
-			user.Email = dbUser.Email;
-			user.Description = dbUser.Description;
-			user.PhotoURL = dbUser.PhotoURL;
-			user.FacebookURL = dbUser.FacebookURL;
+			user.Id = usr.Id;
+			user.FirstName = usr.FirstName;
+			user.LastName = usr.LastName;
+			user.PhoneNumber = usr.PhoneNumber;
+			user.Email = usr.Email;
+			user.Description = usr.Description;
+			user.PhotoURL = usr.PhotoURL;
+			user.FacebookURL = usr.FacebookURL;
 			return Json(user);
         }
 
@@ -280,28 +261,14 @@ namespace MeetMe.Controllers
 		[Route("api/MyId")]
 		public IHttpActionResult TestId()
 		{
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if(shiz == null)
+			var usr = authenticator.AuthorizeGetUser(Request, db);
+
+			if (usr == null)
 			{
 				return Unauthorized();
 			}
 
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
-			{
-				return Unauthorized();
-			}
-
-			if (!db.ApplicationUsers.Any(x => x.Token == token))
-			{
-				return BadRequest();
-			}
-
-			var dbUser = db.ApplicationUsers.First(x => x.Token == token);
-
-			return Json(dbUser.Id);
+			return Json(usr.Id);
 		}
 
 		/// <summary>

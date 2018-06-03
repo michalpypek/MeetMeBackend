@@ -51,15 +51,8 @@ namespace MeetMe.Controllers
 		[ResponseType(typeof(IEnumerable<EventViewModel>))]
 		public IHttpActionResult Get()
         {
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if (shiz == null)
-			{
-				return Unauthorized();
-			}
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
+			var usr = authenticator.AuthorizeGetUser(Request, db);
+			if (usr == null)
 			{
 				return Unauthorized();
 			}
@@ -79,15 +72,9 @@ namespace MeetMe.Controllers
 		[Route("api/Events/all")]
 		public IHttpActionResult GetOld()
 		{
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if (shiz == null)
-			{
-				return Unauthorized();
-			}
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
+			var usr = authenticator.AuthorizeGetUser(Request, db);
+
+			if (usr == null)
 			{
 				return Unauthorized();
 			}
@@ -106,15 +93,9 @@ namespace MeetMe.Controllers
 		[ResponseType(typeof(EventViewModel))]
         public IHttpActionResult Get(int id)
         {
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if (shiz == null)
-			{
-				return Unauthorized();
-			}
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
+			var usr = authenticator.AuthorizeGetUser(Request, db);
+
+			if (usr == null)
 			{
 				return Unauthorized();
 			}
@@ -272,20 +253,12 @@ namespace MeetMe.Controllers
 		[Route("api/Events/{eventId:int}/WasRated")]
 		public IHttpActionResult WasRated(int eventId)
 		{
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if (shiz == null)
-			{
-				return Unauthorized();
-			}
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
-			{
-				return Unauthorized();
-			}
+			var usr = authenticator.AuthorizeGetUser(Request, db);
 
-			var usr = authenticator.GetUserByToken(token, db);
+			if (usr == null)
+			{
+				return Unauthorized();
+			}
 
 			Event evt = db.Events.Find(eventId);
 			if (evt == null)
@@ -334,20 +307,12 @@ namespace MeetMe.Controllers
 		[Route("api/Events/{eventId:int}/Rate")]
 		public IHttpActionResult Rate(int eventId, float grade)
 		{
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if (shiz == null)
-			{
-				return Unauthorized();
-			}
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
-			{
-				return Unauthorized();
-			}
+			var usr = authenticator.AuthorizeGetUser(Request, db);
 
-			var usr = authenticator.GetUserByToken(token, db);
+			if (usr == null)
+			{
+				return Unauthorized();
+			}
 
 			Event evt = db.Events.Find(eventId);
 			if (evt == null)
@@ -419,15 +384,9 @@ namespace MeetMe.Controllers
 		[ResponseType(typeof(IEnumerable<EventViewModel>))]
 		public IHttpActionResult GetEvents(double lat, double lon, double range)
 		{
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if (shiz == null)
-			{
-				return Unauthorized();
-			}
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
+			var usr = authenticator.AuthorizeGetUser(Request, db);
+
+			if (usr == null)
 			{
 				return Unauthorized();
 			}
@@ -448,20 +407,12 @@ namespace MeetMe.Controllers
 		[ResponseType(typeof(IEnumerable<EventViewModel>))]
 		public IHttpActionResult GetMyEvents()
 		{
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if (shiz == null)
-			{
-				return Unauthorized();
-			}
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
-			{
-				return Unauthorized();
-			}
+			var usr = authenticator.AuthorizeGetUser(Request, db);
 
-			var usr = authenticator.GetUserByToken(token, db);
+			if (usr == null)
+			{
+				return Unauthorized();
+			}
 
 			List<EventViewModel> allEvents = GetAllEvents();
 			List<EventViewModel> events = new List<EventViewModel>();
@@ -490,20 +441,12 @@ namespace MeetMe.Controllers
 		[ResponseType(typeof(IEnumerable<EventViewModel>))]
 		public IHttpActionResult GetAllMyEvents()
 		{
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if (shiz == null)
-			{
-				return Unauthorized();
-			}
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
-			{
-				return Unauthorized();
-			}
+			var usr = authenticator.AuthorizeGetUser(Request, db);
 
-			var usr = authenticator.GetUserByToken(token, db);
+			if (usr == null)
+			{
+				return Unauthorized();
+			}
 
 			Guest guest = db.Guests.Find(usr.Id);
 
@@ -543,15 +486,9 @@ namespace MeetMe.Controllers
 		[ResponseType(typeof(IEnumerable<EventViewModel>))]
 		public IHttpActionResult GetUserEvents(int userId)
 		{
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if (shiz == null)
-			{
-				return Unauthorized();
-			}
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
+			var _usr = authenticator.AuthorizeGetUser(Request, db);
+
+			if (_usr == null)
 			{
 				return Unauthorized();
 			}
@@ -594,15 +531,9 @@ namespace MeetMe.Controllers
 		[ResponseType(typeof(IEnumerable<EventViewModel>))]
 		public IHttpActionResult GetUserEventsCreated(int userId)
 		{
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if (shiz == null)
-			{
-				return Unauthorized();
-			}
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
+			var _usr = authenticator.AuthorizeGetUser(Request, db);
+
+			if (_usr == null)
 			{
 				return Unauthorized();
 			}
@@ -652,15 +583,9 @@ namespace MeetMe.Controllers
 		[ResponseType(typeof(void))]
 		public IHttpActionResult PutEvent(int id, EventViewModel et)
 		{
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			if (shiz == null)
-			{
-				return Unauthorized();
-			}
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
+			var usr = authenticator.AuthorizeGetUser(Request, db);
+
+			if (usr == null)
 			{
 				return Unauthorized();
 			}
@@ -708,11 +633,9 @@ namespace MeetMe.Controllers
 		[ResponseType(typeof(Event))]
 		public IHttpActionResult Delete(int id)
 		{
-			string token;
-			IEnumerable<string> shiz;
-			Request.Headers.TryGetValues("Authorization", out shiz);
-			token = shiz.FirstOrDefault();
-			if (!authenticator.IsTokenOk(token, db))
+			var usr = authenticator.AuthorizeGetUser(Request, db);
+
+			if (usr == null)
 			{
 				return Unauthorized();
 			}
